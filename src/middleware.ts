@@ -54,24 +54,27 @@ app.get(
  }
 )
 
-app.onAfterHandle(({ response }) => {
- return {
-   success: true,
-   data: response
- }
-})
-
 
 app.get("/profile", () => ({
  name: "Nama kamu"
 }))
 
-app.get("/product", () => ({
-  id: 1,
-  name: "Laptop"
-}));
-
-
+app.get(
+  "/product",
+  () => ({
+    id: 1,
+    name: "Laptop"
+  }),
+  {
+    afterHandle({ response }) {
+      return {
+        success: true,
+        Message: "data tersedia",
+        data: response
+      }
+    }
+  }
+)
 
 app.post(
  "/register",
