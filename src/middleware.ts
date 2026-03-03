@@ -1,6 +1,6 @@
-import { Elysia } from "elysia"
+import { Elysia, t } from "elysia"
 import { openapi } from "@elysiajs/openapi";
-import {     t } from "elysia";
+
 
 const app = new Elysia()
 .use(openapi())
