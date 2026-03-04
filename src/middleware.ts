@@ -86,20 +86,7 @@ app.post(
    })
  }
 )
-app.post(
-  "/login",
-  ({ body }) => {
-    return {
-      message: "Login Berhasil"
-    }
-  },
-  {
-    body: t.Object ({
-      email: t.String ({ format: "email" }),
-      password: t.String ({ minLegth: 8 })
-    })
-  }
-)
+
 
 
 app.onError(({ code, error, set }) => {
