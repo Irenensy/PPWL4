@@ -13,6 +13,42 @@ app.onRequest(({ request }) => {
 
 app.get("/", () => "Hello Middleware")
 
+app.get(
+ "/dashboard",
+ () => ({
+   message: "Welcome to Dashboard"
+ }),
+ {
+   beforeHandle({ headers, set }) {
+     if (!headers.authorization) {
+       set.status = 401
+       return {
+         success: false,
+         message: "Unauthorized"
+       }
+     }
+   }
+ }
+)
+app.get(
+ "/admin",
+ () => ({
+   message: "Welcome to Dashboard"
+ }),
+ {
+   beforeHandle({ headers, set }) {
+     if (headers.authorization !== "Bearer 123") {
+       set.status = 401
+       return {
+         success: false,
+         message: "Unauthorized"
+       }
+     }
+   }
+ }
+)
+
+
 
 app.listen(3000)
 console.log("Server running at http://localhost:3000")
