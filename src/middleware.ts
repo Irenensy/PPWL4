@@ -48,6 +48,22 @@ app.get(
  }
 )
 
+app.get(
+  "/product",
+  () => ({
+    id: 1,
+    name: "Laptop"
+  }),
+  {
+    afterHandle({ response }) {
+      return {
+        success: true,
+        Message: "data tersedia",
+        data: response
+      }
+    }
+  }
+)
 
 
 app.listen(3000)
